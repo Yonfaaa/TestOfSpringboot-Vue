@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.UserMapper" >
+    <resultMap id="userMap" type="com.example.demo.entity.User" >
+        <id property="id" column="id" />
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+        <result property="age" column="age" />
+        <result property="sex" column="sex" />
+        <result property="address" column="address" />
+        <result property="role" column="role" />
+        <collection property="bookList" javaType="Arraylist" ofType="com.example.demo.entity.Book">
+            <result property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="price" column="price"/>
+            <result property="userId" column="user_id"/>
+        </collection>
+    </resultMap>
+    <select id="findPage" resultMap="userMap">
+        SELECT *
+        FROM users LEFT OUTER JOIN book ON
+        users.id=book.user_id
+    </select>
+    <select id="getUserByID" resultMap="userMap">
+        SELECT *
+        FROM users LEFT OUTER JOIN book ON
+        users.id=book.user_id
+        WHERE
+        users.id=#{id}
+    </select>
+    <delete id="deleteByID">
+        DELETE users, book
+        FROM users
+        LEFT JOIN book ON users.id = book.user_id
+        WHERE users.id = #{id}
+    </delete>
+</mapper>
