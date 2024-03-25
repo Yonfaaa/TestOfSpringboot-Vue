@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DemoApplication {
 
 	//test by gyf
+	int tyj;
+	//test by tyj
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
