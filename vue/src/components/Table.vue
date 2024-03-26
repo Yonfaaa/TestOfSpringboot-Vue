@@ -10,8 +10,8 @@
 
         <!-- 查询模块 -->
         <div style="margin-left: 0px; padding-top: 0; padding-bottom: 10px;display: flex;">
+            <el-input v-model="search" placeholder="请输入关键字" clearable ></el-input>
             <el-button type="primary" style="margin-right: 20px;" @click="load">查询</el-button>
-            <el-input v-model="search" placeholder="请输入关键字" clearable></el-input>
         </div>
 
     </el-row>
@@ -141,9 +141,8 @@
         if(this.form.id){  //更新
           request.put("/user",this.form).then(res => {
             console.log(res)
-
             if(res.code === '0'){
-              this.$message.success("更新成功")
+              this.$message.success("更新成功"
             }
             else{
               this.$message.console.error(res.msg);  //写法不一样，可能报错

@@ -17,22 +17,31 @@ public class UserController {
     @Resource
     UserMapper userMapper;
 
-    @GetMapping("/test")
-    public Result findPage(@RequestParam(defaultValue = "1") Integer pageNum,
+    @PostMapping
+    public Result<?> save(@RequestBody User user){
+        if(user.getPassword()==null){
+            user.setPassword("123456");
+        }
+        userMapper.insert(user);
+        return Result.success();
+    }
+
+    @PutMapping
+    public Result<?> update(@RequestBody User user){
+        userMapper.updateById(user);
+        return Result.success();
+    }
+
+    @GetMapping
+    public Result<?> findPage(@RequestParam(defaultValue = "1") Integer pageNum,
                               @RequestParam(defaultValue = "10") Integer pageSize,
                               @RequestParam(defaultValue = "") String search){
         LambdaQueryWrapper<User> wrapper = Wrappers.lambdaQuery();
         if(StringUtils.isNotBlank(search)){
-            wrapper.like(User::getNickName,search);
+           wrapper.like(User::getNickName,search);
         }
         Page<User> userPage=userMapper.findPage(new Page<>(pageNum,pageSize));
         return Result.success(userPage);
-    }
-
-    @PostMapping
-    public Result save(@RequestBody User user){
-        userMapper.insert(user);
-        return Result.success();
     }
 
     @PostMapping("/login")
@@ -58,7 +67,8 @@ public class UserController {
         return Result.success();
     }
 
-    }
+
+}
 
 
 
