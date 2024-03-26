@@ -118,7 +118,7 @@
     methods:{
       load(){    //上载数据
         // 这里的参数有点不一样
-        request.get("/api/user",
+        request.get("/user",
           {
             params:{
               pageNum: this.currentPage4,
@@ -139,7 +139,7 @@
       save(){     //保存数据
         // 调用API接口，port未确定
         if(this.form.id){  //更新
-          request.put("/api/user",this.form).then(res => {
+          request.put("/user",this.form).then(res => {
             console.log(res)
 
             if(res.code === '0'){
@@ -154,7 +154,7 @@
           })
         }
         else{              //添加
-          request.post("/api/user",this.form).then(res => {
+          request.post("/user",this.form).then(res => {
             console.log(res)
             
             if(res.code === '0'){
@@ -176,7 +176,7 @@
       },
       handleDelete (id) {
         console.log(id)
-        request.delete("/api/user" + id).then(res => {
+        request.delete("/user" + id).then(res => {
           if(res.code === '0'){
               this.$message.success("删除成功")
             }
