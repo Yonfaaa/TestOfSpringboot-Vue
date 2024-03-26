@@ -142,7 +142,7 @@
           request.put("/user",this.form).then(res => {
             console.log(res)
             if(res.code === '0'){
-              this.$message.success("更新成功"
+              this.$message.success("更新成功")
             }
             else{
               this.$message.console.error(res.msg);  //写法不一样，可能报错
