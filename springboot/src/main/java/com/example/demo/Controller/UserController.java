@@ -32,6 +32,12 @@ public class UserController {
         return Result.success();
     }
 
+    @DeleteMapping("/{id}")
+    public Result<?> update(@PathVariable Long id){
+        userMapper.deleteByID(id);
+        return Result.success();
+    }
+
     @GetMapping
     public Result<?> findPage(@RequestParam(defaultValue = "1") Integer pageNum,
                               @RequestParam(defaultValue = "10") Integer pageSize,
