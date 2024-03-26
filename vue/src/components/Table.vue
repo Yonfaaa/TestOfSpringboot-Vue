@@ -29,10 +29,10 @@
                 <!-- 防止误操作 -->
                 <el-popconfirm title="确认删除吗?" @confirm="handleDelete(scope.row.id)">
                   <template #reference>
-                    <el-button type="danger" size="small">删除</el-button>
+                    <el-button type="danger" size="small" >删除</el-button>
                   </template>
                 </el-popconfirm>
-                <!-- <el-button link type="primary" size="small">删除</el-button> -->
+
               </template>
             </el-table-column>
 
@@ -50,7 +50,7 @@
           :disabled="disabled"
           :background="background"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="40"
+          :total="total"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
         />
@@ -108,12 +108,16 @@
         dialogVisible: false,
         search:'',
         form:{},
+        total:0,
         currentPage4 : ref(1),
         pageSize4 : ref(10),
         small : ref(false),
         background : ref(false),
         disabled : ref(false)
       }
+    },
+    created() {
+      this.load()
     },
     methods:{
       load(){    //上载数据
@@ -130,6 +134,7 @@
           console.log(res)
           this.tableData=res.data.records //records是后端名
           this.total = res.data.total
+
         })
       },
       add () {    //添加数据
@@ -142,10 +147,16 @@
           request.put("/user",this.form).then(res => {
             console.log(res)
             if(res.code === '0'){
-              this.$message.success("更新成功")
+              this.$message({
+                type:"success",
+                message:"更新成功"
+              })
             }
             else{
-              this.$message.console.error(res.msg);  //写法不一样，可能报错
+              this.$message({
+                type:"error",
+                message:res.msg
+              })
             }
             
             this.load()               //刷新表格
@@ -155,12 +166,18 @@
         else{              //添加
           request.post("/user",this.form).then(res => {
             console.log(res)
-            
+
             if(res.code === '0'){
-              this.$message.success("添加成功")
+              this.$message({
+                type:"success",
+                message:"添加成功"
+              })
             }
             else{
-              this.$message.console.error(res.msg);  //写法不一样，可能报错
+              this.$message({
+                type:"error",
+                message:res.msg
+              })
             }
 
             this.load()               //刷新表格
@@ -174,25 +191,30 @@
         this.dialogVisible=true
       },
       handleDelete (id) {
-        console.log(id)
-        request.delete("/user" + id).then(res => {
+        request.delete("/user/" + id).then(res => {
           if(res.code === '0'){
-              this.$message.success("删除成功")
-            }
-            else{
-              this.$message.console.error(res.msg);  //写法不一样，可能报错
-            }
+            this.$message({
+              type:"success",
+              message:"删除成功"
+            })
+          }
+          else{
+            this.$message({
+              type:"error",
+              message:res.msg
+            })
+          }
 
           this.load()               //刷新表格
           this.dialogVisible=false  //关闭弹窗
         })
       },
-      handleSizeChange () {   //可能出现未改变页数的情况
-        console.log(`${val} items per page`);
+      handleSizeChange (pageSize4) {
+        this.pageSize4=pageSize4
         this.load()
       },
-      handleCurrentChange () { //可能出现未改变当前页的情况
-        console.log(`current page: ${val}`);
+      handleCurrentChange (pageNum) {
+        this.currentPage4=pageNum
         this.load()
       }
     }

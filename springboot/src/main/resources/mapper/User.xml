@@ -19,11 +19,15 @@
             <result property="userId" column="user_id"/>
         </collection>
     </resultMap>
+
     <select id="findPage" resultMap="userMap">
         SELECT *
         FROM users LEFT OUTER JOIN book ON
         users.id=book.user_id
     </select>
+
+
+
     <select id="getUserByID" resultMap="userMap">
         SELECT *
         FROM users LEFT OUTER JOIN book ON
