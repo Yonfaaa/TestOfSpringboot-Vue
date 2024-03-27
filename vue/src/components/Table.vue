@@ -10,8 +10,8 @@
 
       <!-- 查询模块 -->
       <div style="margin-left: 0px; padding-top: 0; padding-bottom: 10px;display: flex;">
-        <el-button type="primary" style="margin-right: 20px;" @click="load">查询</el-button>
         <el-input v-model="search" placeholder="请输入关键字" clearable ></el-input>
+        <el-button type="primary" style="margin-right: 20px;" @click="load">查询</el-button>
       </div>
     </el-row>
     <el-row>
