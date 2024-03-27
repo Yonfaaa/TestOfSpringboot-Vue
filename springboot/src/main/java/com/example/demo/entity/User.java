@@ -4,12 +4,21 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.security.Permission;
 import java.util.List;
+import java.util.Set;
 
-@TableName("users")
+@TableName("user")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @TableId(type = IdType.AUTO)
     private Integer id;
@@ -19,12 +28,18 @@ public class User {
     private Integer age;
     private String sex;
     private String address;
-    private Integer role;
+
+    @TableField(exist = false)
+    private List<Integer> roles;
 
     @TableField(exist = false)
     private List<Book> bookList;
 
-    public String getNickName() {
-        return nickName;
-    }
+    @TableField(exist = false)
+    private String token;
+
+    private BigDecimal account;
+
+    @TableField(exist = false)
+    private Set<Permission> permissions;
 }

@@ -70,8 +70,8 @@
               <el-input v-model="form.age" style="width: 80%;" />
             </el-form-item>
             <el-form-item label="性别">
-              <el-radio v-model="form.sex" value="男">男</el-radio>
-              <el-radio v-model="form.sex" value="女">女</el-radio>
+              <el-radio v-model="form.sex" value="M">男</el-radio>
+              <el-radio v-model="form.sex" value="F">女</el-radio>
               <!-- <el-input v-model="form.sex" style="width: 80%;" /> -->
             </el-form-item>
             <el-form-item label="地址">

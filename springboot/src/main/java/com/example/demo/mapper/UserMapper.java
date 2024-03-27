@@ -7,7 +7,4 @@ import com.example.demo.entity.User;
 import java.util.List;
 
 public interface UserMapper extends BaseMapper<User> {
-    Page<User> findPage(Page<User>page);
-    User getUserByID(Long id);
-    void deleteByID(Long id);
 }
