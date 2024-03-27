@@ -19,10 +19,11 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:8090',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite:(path)=> path.replace(/^\/api/,'')
+        }
       }
     }
-  }
+
 })
 
 // 跨域配置
