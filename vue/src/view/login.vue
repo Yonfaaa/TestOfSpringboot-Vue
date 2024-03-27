@@ -54,7 +54,7 @@ export default {
 
       // request.post("/user/login",form).then(res => {
       //   if(res.code == 0){
-      //     showMessage("success","登录成功")
+      //     showMessage(q"success","登录成功")
       //     router.push('/home')
       //   }
       //   else{
