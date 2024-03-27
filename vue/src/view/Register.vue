@@ -50,22 +50,23 @@ export default {
         return
       }
 
-      this.$refs['form'].validate((valid)=> {
-        if (valid) {
-          request.post("/user/register",form).then(res => {
-            console.log(res.code)
-            if(res.code ==  0){
-              showMessage("success","注册成功")
-              router.push('/login')
-            }
-            else{
-              showMessage("111",res.msg)
-              // router.push('/login')
+      request.post("/user/register",form).then(res => {
+        console.log(res.code)
+        if(res.code ==  0){
+          showMessage("success","注册成功")
+          router.push('/login')
+        }
+        else{
+          showMessage("111",res.msg)
+          // router.push('/login')
 
-            }
-          })
         }
       })
+      // this.$refs['form'].validate((valid)=> {
+      //   if (valid) {
+      //
+      //   }
+      // })
 
     }
     return {

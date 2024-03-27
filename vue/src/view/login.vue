@@ -36,21 +36,21 @@ export default {
   setup(){
     const router=useRouter()
     const login = (form) => {
-
-      this.$refs['form'].validate((valid)=>{
-        if (valid){
-          request.post("/user/login",form).then(res => {
-            if(res.code == 0){
-              showMessage("success","登录成功")
-              router.push('/home')
-            }
-            else{
-              showMessage("error",res.msg)
-              // gotoHome()
-            }
-          })
+      request.post("/user/login",form).then(res => {
+        if(res.code == 0){
+          showMessage("success","登录成功")
+          router.push('/home')
+        }
+        else{
+          showMessage("error",res.msg)
+          // gotoHome()
         }
       })
+      // this.$refs['form'].validate((valid)=>{
+      //   if (valid){
+      //
+      //   }
+      // })
 
       // request.post("/user/login",form).then(res => {
       //   if(res.code == 0){
