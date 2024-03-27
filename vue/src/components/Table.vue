@@ -1,22 +1,22 @@
 <template>
     <el-row>
-        <!-- 功能模块 -->
-        <div style="margin-left: 0px; margin-right: 20px; padding-top: 0; padding-bottom: 10px;">
-            <el-button type="primary" @click="add">新增</el-button>
-            <el-button type="primary">导入</el-button>
-            <el-button type="primary">导出</el-button>
-        </div>
-     
+      <!-- 功能模块 -->
+      <div style="margin-left: 0px; margin-right: 20px; padding-top: 0; padding-bottom: 10px;">
+        <el-button type="primary" @click="add">新增</el-button>
+        <el-button type="primary">导入</el-button>
+        <el-button type="primary">导出</el-button>
+      </div>
 
-        <!-- 查询模块 -->
-        <div style="margin-left: 0px; padding-top: 0; padding-bottom: 10px;display: flex;">
-            <el-input v-model="search" placeholder="请输入关键字" clearable ></el-input>
-            <el-button type="primary" style="margin-right: 20px;" @click="load">查询</el-button>
-        </div>
 
+      <!-- 查询模块 -->
+      <div style="margin-left: 0px; padding-top: 0; padding-bottom: 10px;display: flex;">
+        <el-button type="primary" style="margin-right: 20px;" @click="load">查询</el-button>
+        <el-input v-model="search" placeholder="请输入关键字" clearable ></el-input>
+      </div>
     </el-row>
     <el-row>
-        <el-table :data="tableData" border style="width: 100%;">
+        <el-col :span="24">
+          <el-table :data="tableData" border style="width: 100%;">
             <el-table-column prop="id" label="ID" sortable/>
             <el-table-column prop="username" label="用户名"  />
             <el-table-column prop="nickName" label="昵称" />
@@ -36,26 +36,28 @@
               </template>
             </el-table-column>
 
-        </el-table> 
+          </el-table>
+        </el-col>
     </el-row>
 
     <!-- 分页模块 -->
     <el-row>
-      <div style="margin: 10px;">
-        <el-pagination
-          v-model:current-page="currentPage4"
-          v-model:page-size="pageSize4"
-          :page-sizes="[5, 10, 20]"
-          :small="small"
-          :disabled="disabled"
-          :background="background"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="total"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
-        
-        <!-- 弹窗模块 -->
+      <el-col :span="24">
+        <div style="margin: 10px;">
+          <el-pagination
+              v-model:current-page="currentPage4"
+              v-model:page-size="pageSize4"
+              :page-sizes="[5, 10, 20]"
+              :small="small"
+              :disabled="disabled"
+              :background="background"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total="total"
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+          />
+
+          <!-- 弹窗模块 -->
 
         <el-dialog v-model="dialogVisible" title="提示" width="500">
           
@@ -79,14 +81,15 @@
             </el-form-item>
           </el-form>
 
-          <template #footer>
-            <div class="dialog-footer">
-              <el-button @click="dialogVisible = false">取消</el-button>
-              <el-button type="primary" @click="save">确定</el-button>
-            </div>
-          </template>
-        </el-dialog>
-      </div>
+            <template #footer>
+              <div class="dialog-footer">
+                <el-button @click="dialogVisible = false">取消</el-button>
+                <el-button type="primary" @click="save">确定</el-button>
+              </div>
+            </template>
+          </el-dialog>
+        </div>
+      </el-col>
     </el-row>
     
     
