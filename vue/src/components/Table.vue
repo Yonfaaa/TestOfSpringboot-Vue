@@ -146,7 +146,7 @@
         if(this.form.id){  //更新
           request.put("/user",this.form).then(res => {
             console.log(res)
-            if(res.code === '0'){
+            if(res.code === 0){
               this.$message({
                 type:"success",
                 message:"更新成功"
@@ -167,7 +167,7 @@
           request.post("/user",this.form).then(res => {
             console.log(res)
 
-            if(res.code === '0'){
+            if(res.code === 0){
               this.$message({
                 type:"success",
                 message:"添加成功"
@@ -192,7 +192,7 @@
       },
       handleDelete (id) {
         request.delete("/user/" + id).then(res => {
-          if(res.code === '0'){
+          if(res.code === 0){
             this.$message({
               type:"success",
               message:"删除成功"
