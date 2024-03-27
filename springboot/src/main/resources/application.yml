@@ -5,4 +5,4 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/springboot-vue?characterEncoding=utf-8&serverTimezone=UTC
     username: root
-    password: guoyongfu454
+    password: taiyujie642
