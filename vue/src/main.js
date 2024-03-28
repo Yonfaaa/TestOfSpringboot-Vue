@@ -13,6 +13,7 @@ import "@/assets/css/global.css"
 import {createRouter,createWebHistory} from 'vue-router'
 import Layout from "@/Layout/Layout.vue";
 import Table from "@/components/Table.vue";
+import Book from "@/components/Book.vue";
 
 
 const routes = [
@@ -21,11 +22,21 @@ const routes = [
         name: 'Layout',
         component: Layout,
         redirect:"/home",   //自动跳转到所示路径
-        children: [{
+        children: [
+            //用户管理
+            {
             path:'home',
             name: 'Home',
             component: Table,
-        }]
+            },
+            //图书管理
+            {
+                path:'data',
+                name:'Book',
+                component:Book,
+            }
+        ],
+
     },
     {
         path: '/login',
